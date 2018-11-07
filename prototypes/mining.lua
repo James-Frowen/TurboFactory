@@ -1,12 +1,3 @@
-local entity 
-local item 
-local recipe
-local name = "nuclear-mining-drill"
-
-local graphics = "__TurboFactory__/graphics/"
-local entityTint = {r=0.7,g=0.9,b=0.7,a=1}
-local iconTint = {r=0.5,g=0.8,b=0.5,a=0.8}
-
 -- {name, speed, energy, area, modSlots, ingredients,  iconTint, entityTint} 
 function miningDrill(args)
   local name = args.name
