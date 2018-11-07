@@ -1,11 +1,9 @@
 local energy_source = require("prototypes.parts.energy_source")
 
--- {name, speed, energy, area, modSlots, ingredients,  iconTint, entityTint} 
-function miningDrill(args)
+function furnace(args)
   local name = args.name
   local speed = args.speed
   local energy = args.energy
-  local area = args.area
   local modSlots = args.modSlots
   local ingredients = args.ingredients
   local iconTint = args.iconTint
@@ -14,9 +12,9 @@ function miningDrill(args)
   local prerequisites = args.prerequisites
   local science_count = args.science_count
 
-  local entity = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"])
-  local item = table.deepcopy(data.raw.item["electric-mining-drill"])
-  local recipe = table.deepcopy(data.raw.recipe["electric-mining-drill"])
+  local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+  local item = table.deepcopy(data.raw.item["electric-furnace"])
+  local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
 
   local icon = {{
     icon=item.icon,
@@ -29,8 +27,8 @@ function miningDrill(args)
   item.icons = icon
   
   entity.name = name
+  entity.crafting_speed = speed
   entity.minable = {mining_time = 2, result = name}
-  entity.mining_speed = speed
   -- entity.energy_source =
   -- {
   --   type = "electric",
@@ -41,44 +39,37 @@ function miningDrill(args)
   entity.energy_source = energy_source.nuclear()
   entity.energy_usage = energy
   entity.max_health = health
-  entity.mining_power = 3
-  entity.resource_searching_radius = area
   entity.module_specification =
   {
     module_slots = modSlots
   }
-  entity.animations.north.tint = entityTint
-  entity.animations.east.tint = entityTint
-  entity.animations.south.tint = entityTint
-  entity.animations.west.tint = entityTint
-
+  for k, v in pairs(entity.animation.layers) do 
+    v.tint = entityTint
+  end
   
   recipe.enabled = false
   recipe.name = name
   recipe.normal = nil
   recipe.expensive = nil
   recipe.ingredients = ingredients
+
+-- -- TESTING
+--   recipe.enabled = true
+--   recipe.ingredients = {
+--     {"steel-plate",1},
+--   }
+
   recipe.result = name
   recipe.icons = icon
   recipe.icon_size = 32
-
-  -- -- TESTING
-  -- recipe.enabled = true
-  -- recipe.ingredients = {
-  --   {"steel-plate",1},
-  -- }
 
   local tech = {
     type = "technology",
     name = name,
     icon_size = 128,
-    icon = "__base__/graphics/technology/mining-productivity.png",
+    icon = "__base__/graphics/technology/advanced-material-processing.png",
     effects =
     {
-      {
-        type = "mining-drill-productivity-bonus",
-        modifier = 0.10
-      },
       {
         type = "unlock-recipe",
         recipe = name
@@ -107,65 +98,62 @@ function miningDrill(args)
 end
 
 local mk1 = {
-  name = "nuclear-mining-drill-mk1",
-  prerequisites = {"nuclear-power"},
-  speed = 4, 
+  name = "nuclear-furnace-mk1",
+  speed = 5, 
   energy = "900kW", 
-  area = 2.49, 
-  modSlots = 0, 
+  modSlots = 3, 
   ingredients =  {
-    {"advanced-circuit",40},
-    {"steel-plate",40},
-    {"concrete",100},
+    {"advanced-circuit",50},
+    {"steel-plate",20},
+    {"concrete",200},
     {"nuclear-reactor",1}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
   health = 3000,
+  prerequisites = {"nuclear-power"},
   science_count = 2000
 }
 
 local mk2 = {
-  name ="nuclear-mining-drill-mk2",
-  prerequisites = {mk1.name},
-  speed = 10, 
-  energy = "5800kW", 
-  area = 3.49, 
-  modSlots = 2, 
+  name = "nuclear-furnace-mk2",
+  speed = 18, 
+  energy = "1800kW", 
+  modSlots = 4, 
   ingredients =  {
-    {"advanced-circuit",100},
-    {"steel-plate",250},
-    {"concrete",150},
+    {"advanced-circuit",150},
+    {"steel-plate",80},
+    {"concrete",350},
     {"nuclear-reactor",1},
-    {"processing-unit", 50}
+    {"processing-unit", 200}
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},
   health = 9000,
+  prerequisites = {mk1.name},
   science_count = 8000
 }
 
 local mk3 = {
-  name ="nuclear-mining-drill-mk3",
-  prerequisites = {mk2.name},
+  name = "nuclear-furnace-mk3",
   speed = 50, 
-  energy = "24600kW", 
-  area = 4.49, 
-  modSlots = 8, 
+  energy = "3600kW", 
+  modSlots = 6, 
   ingredients =  {
-    {"advanced-circuit",200},
-    {"steel-plate",1000},
-    {"concrete",500},
-    {"nuclear-reactor",2},
-    {"processing-unit", 500}
+    {"advanced-circuit",250},
+    {"steel-plate",260},
+    {"concrete",1200},
+    {"nuclear-reactor",3},
+    {"processing-unit", 700}
   },  
   iconTint = {r=0.4,g=1,b=0.4,a=0.8},
   entityTint = {r=0.4,g=1,b=0.4,a=1},
   health = 30000,
+  prerequisites = {mk2.name},
   science_count = 30000
 }
 
 
-miningDrill(mk1)
-miningDrill(mk2)
-miningDrill(mk3)
+furnace(mk1)
+furnace(mk2)
+furnace(mk3)
