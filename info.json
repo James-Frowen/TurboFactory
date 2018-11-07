@@ -1,0 +1,13 @@
+{
+    "name": "TurboFactory",
+    "version": "0.1.0",
+    "title": "Turbo Factory",
+    "author": "JamesDev",
+    "contact": "jamesfrowendev@gmail.com",
+    "homepage": "",
+    "factorio_version": "0.16",
+    "dependencies": [
+        "base >= 0.16"
+    ],
+    "description": "This mod adds advanced versions for most of the machines. These versions cost a lot to create and have high power requirements"
+}
