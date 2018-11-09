@@ -8,7 +8,7 @@ cleaningIcon =
   tint={r=0.6, g=0.6, b=0.6, a=1}
 }
 local function createRadioactive(oreName, plateName)
-  log("*t* nuclear ore " .. oreName)
+  -- log("*t* nuclear ore " .. oreName)
   local rawOre = data.raw.resource[oreName]
   local rawItem = data.raw.item[oreName]
   local ore = table.deepcopy(rawOre)

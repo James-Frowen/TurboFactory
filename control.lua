@@ -33,7 +33,7 @@ end
 local function onEntityCreated(e)
   local entity = e.created_entity
   if string.match(entity.name, "nuclear%-mining%-drill") then
-    log("Nuclear Miner Built")
+    -- log("Nuclear Miner Built")
     makeOreNuclear(entity)
   end
 end

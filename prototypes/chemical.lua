@@ -71,7 +71,7 @@ function makeEntity(args)
     type = "technology",
     name = name,
     icon_size = 128,
-    icon = "__base__/graphics/technology/advanced-material-processing.png",
+    icon = "__base__/graphics/technology/advanced-chemistry.png",
     effects =
     {
       {
@@ -102,15 +102,17 @@ function makeEntity(args)
 end
 
 local mk1 = {
-  name = "nuclear-chemicals-mk1",
+  name = "nuclear-chemical-plant-mk1",
   speed = 5, 
   energy = "900kW", 
   modSlots = 3, 
   ingredients =  {
-    {"advanced-circuit",50},
-    {"steel-plate",20},
-    {"concrete",200},
-    {"nuclear-reactor",1}
+    {"advanced-circuit",80},
+    {"steel-plate",50},
+    {"concrete",100},
+    {"nuclear-reactor",1},
+    {"processing-unit", 10},
+    {"chemical-plant",1}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
@@ -120,16 +122,16 @@ local mk1 = {
 }
 
 local mk2 = {
-  name = "nuclear-chemicals-mk2",
+  name = "nuclear-chemical-plant-mk2",
   speed = 18, 
   energy = "1800kW", 
   modSlots = 4, 
   ingredients =  {
-    {"advanced-circuit",150},
-    {"steel-plate",80},
-    {"concrete",350},
-    {"nuclear-reactor",1},
-    {"processing-unit", 200}
+    {"advanced-circuit",170},
+    {"steel-plate",110},
+    {"concrete",200},
+    {"processing-unit", 340},
+    {mk1.name, 1}
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},
@@ -138,26 +140,6 @@ local mk2 = {
   science_count = 8000
 }
 
-local mk3 = {
-  name = "nuclear-chemical-mk3",
-  speed = 50, 
-  energy = "3600kW", 
-  modSlots = 6, 
-  ingredients =  {
-    {"advanced-circuit",250},
-    {"steel-plate",260},
-    {"concrete",1200},
-    {"nuclear-reactor",3},
-    {"processing-unit", 700}
-  },  
-  iconTint = {r=0.4,g=1,b=0.4,a=0.8},
-  entityTint = {r=0.4,g=1,b=0.4,a=1},
-  health = 30000,
-  prerequisites = {mk2.name},
-  science_count = 30000
-}
-
 
 makeEntity(mk1)
 makeEntity(mk2)
-makeEntity(mk3)

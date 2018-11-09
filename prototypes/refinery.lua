@@ -43,12 +43,18 @@ function makeEntity(args)
   {
     module_slots = modSlots
   }
-  log(name .. " START")
-  log(serpent.block(entity.animation))
-  log(name .. " END")
-  -- for k, v in pairs(entity.animation.layers) do 
-  --   v.tint = entityTint
-  -- end
+  for k, v in pairs(entity.animation.north.layers) do 
+    v.tint = entityTint
+  end
+  for k, v in pairs(entity.animation.south.layers) do 
+    v.tint = entityTint
+  end
+  for k, v in pairs(entity.animation.east.layers) do 
+    v.tint = entityTint
+  end
+  for k, v in pairs(entity.animation.west.layers) do 
+    v.tint = entityTint
+  end
   
   recipe.enabled = false
   recipe.name = name
@@ -71,7 +77,7 @@ function makeEntity(args)
     type = "technology",
     name = name,
     icon_size = 128,
-    icon = "__base__/graphics/technology/advanced-material-processing.png",
+    icon = "__base__/graphics/technology/oil-processing.png",
     effects =
     {
       {
@@ -107,10 +113,11 @@ local mk1 = {
   energy = "900kW", 
   modSlots = 3, 
   ingredients =  {
-    {"advanced-circuit",50},
-    {"steel-plate",20},
-    {"concrete",200},
-    {"nuclear-reactor",1}
+    {"advanced-circuit",100},
+    {"steel-plate",160},
+    {"concrete",300},
+    {"nuclear-reactor",1},
+    {"processing-unit", 20}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
@@ -125,11 +132,11 @@ local mk2 = {
   energy = "1800kW", 
   modSlots = 4, 
   ingredients =  {
-    {"advanced-circuit",150},
-    {"steel-plate",80},
-    {"concrete",350},
+    {"advanced-circuit",400},
+    {"steel-plate",600},
+    {"concrete",1500},
     {"nuclear-reactor",1},
-    {"processing-unit", 200}
+    {"processing-unit", 450}
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},

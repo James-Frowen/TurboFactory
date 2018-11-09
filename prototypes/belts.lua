@@ -17,8 +17,6 @@ function makeEntity(args)
   local entity = table.deepcopy(data.raw[cat][raw])
   local item = table.deepcopy(data.raw.item[raw])
   local recipe = table.deepcopy(data.raw.recipe[raw])
-  log(name)
-  log(raw)
   local icon = {{
     icon=item.icon,
     tint=iconTint
@@ -54,7 +52,6 @@ function makeEntity(args)
     "starting_side",
   }
   for nameCount = 1, 8 do
-    log (anim[nameCount])
     local v = anim[nameCount]
     if entity[v] ~= nil then
         entity[v].tint = entityTint
