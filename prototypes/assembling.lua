@@ -12,9 +12,9 @@ function makeEntity(args)
   local prerequisites = args.prerequisites
   local science_count = args.science_count
 
-  local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-  local item = table.deepcopy(data.raw.item["electric-furnace"])
-  local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
+  local entity = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"])
+  local item = table.deepcopy(data.raw.item["assembling-machine-3"])
+  local recipe = table.deepcopy(data.raw.recipe["assembling-machine-3"])
 
   local icon = {{
     icon=item.icon,
@@ -28,15 +28,14 @@ function makeEntity(args)
   
   entity.name = name
   entity.crafting_speed = speed
-  entity.crafting_categories = { "smelting", "t-nuclear-smelting"}
+  entity.crafting_categories = 
+  {
+    "crafting",
+    "advanced-crafting",
+    "crafting-with-fluid",
+    "t-nuclear-crafting"
+  }
   entity.minable = {mining_time = 2, result = name}
-  -- entity.energy_source =
-  -- {
-  --   type = "electric",
-  --   -- will produce this much * energy pollution units per tick
-  --   emissions = 0,
-  --   usage_priority = "secondary-input"
-  -- }
   entity.energy_source = energy_source.nuclear()
   entity.energy_usage = energy
   entity.max_health = health
@@ -69,7 +68,7 @@ function makeEntity(args)
     type = "technology",
     name = name,
     icon_size = 128,
-    icon = "__base__/graphics/technology/advanced-material-processing.png",
+    icon = "__base__/graphics/technology/automation.png",
     effects =
     {
       {
@@ -92,7 +91,7 @@ function makeEntity(args)
         {"space-science-pack", 1}
       },
     },
-    order = "x-f"
+    order = "x-a"
   }
 
   data:extend({entity, recipe, item, tech})
@@ -100,62 +99,85 @@ function makeEntity(args)
 end
 
 local mk1 = {
-  name = "nuclear-furnace-mk1",
+  name = "nuclear-assembling-mk1",
   speed = 5, 
-  energy = "900kW", 
-  modSlots = 3, 
+  energy = "2100kW", 
+  modSlots = 0, 
   ingredients =  {
-    {"advanced-circuit",50},
-    {"steel-plate",20},
-    {"concrete",200},
-    {"nuclear-reactor",1}
+    {"advanced-circuit",60},
+    {"steel-plate",40},
+    {"concrete",100},
+    {"nuclear-reactor",1},
+    {"assembling-machine-3",1}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
   health = 3000,
   prerequisites = {"turbo-nuclear-power"},
-  science_count = 2000
+  science_count = 1500
 }
 
 local mk2 = {
-  name = "nuclear-furnace-mk2",
-  speed = 18, 
-  energy = "1800kW", 
-  modSlots = 4, 
+  name = "nuclear-assembling-mk2",
+  speed = 12, 
+  energy = "7500kW", 
+  modSlots = 2, 
   ingredients =  {
-    {"advanced-circuit",150},
-    {"steel-plate",80},
-    {"concrete",350},
-    {"nuclear-reactor",1},
-    {"processing-unit", 200}
+    {"advanced-circuit",140},
+    {"steel-plate",140},
+    {"concrete",50},
+    {"processing-unit", 100},
+    {mk1.name,1}
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},
   health = 9000,
   prerequisites = {mk1.name},
-  science_count = 8000
+  science_count = 6500
 }
 
 local mk3 = {
-  name = "nuclear-furnace-mk3",
-  speed = 50, 
-  energy = "3600kW", 
-  modSlots = 6, 
+  name = "nuclear-assembling-mk3",
+  speed = 20, 
+  energy = "26400kW", 
+  modSlots = 4, 
   ingredients =  {
-    {"advanced-circuit",250},
-    {"steel-plate",260},
-    {"concrete",1200},
-    {"nuclear-reactor",3},
-    {"processing-unit", 700}
+    {"advanced-circuit",100},
+    {"steel-plate",360},
+    {"concrete",150},
+    {"nuclear-reactor",1},
+    {"processing-unit", 150},
+    {mk2.name,1}
   },  
   iconTint = {r=0.4,g=1,b=0.4,a=0.8},
   entityTint = {r=0.4,g=1,b=0.4,a=1},
   health = 30000,
   prerequisites = {mk2.name},
-  science_count = 30000
+  science_count = 12000
+}
+
+local mk4 = {
+  name = "nuclear-assembling-mk4",
+  speed = 80, 
+  energy = "54000kW", 
+  modSlots = 8, 
+  ingredients =  {
+    {"advanced-circuit",200},
+    {"steel-plate",440},
+    {"concrete",400},
+    {"nuclear-reactor",1},
+    {"processing-unit", 350},
+    {mk3.name,2}
+  },  
+  iconTint = {r=0.4,g=1,b=0.4,a=0.8},
+  entityTint = {r=0.4,g=1,b=0.4,a=1},
+  health = 30000,
+  prerequisites = {mk3.name},
+  science_count = 40000
 }
 
 
 makeEntity(mk1)
 makeEntity(mk2)
 makeEntity(mk3)
+makeEntity(mk4)

@@ -12,9 +12,9 @@ function makeEntity(args)
   local prerequisites = args.prerequisites
   local science_count = args.science_count
 
-  local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-  local item = table.deepcopy(data.raw.item["electric-furnace"])
-  local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
+  local entity = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"])
+  local item = table.deepcopy(data.raw.item["chemical-plant"])
+  local recipe = table.deepcopy(data.raw.recipe["chemical-plant"])
 
   local icon = {{
     icon=item.icon,
@@ -28,15 +28,7 @@ function makeEntity(args)
   
   entity.name = name
   entity.crafting_speed = speed
-  entity.crafting_categories = { "smelting", "t-nuclear-smelting"}
   entity.minable = {mining_time = 2, result = name}
-  -- entity.energy_source =
-  -- {
-  --   type = "electric",
-  --   -- will produce this much * energy pollution units per tick
-  --   emissions = 0,
-  --   usage_priority = "secondary-input"
-  -- }
   entity.energy_source = energy_source.nuclear()
   entity.energy_usage = energy
   entity.max_health = health
@@ -44,7 +36,16 @@ function makeEntity(args)
   {
     module_slots = modSlots
   }
-  for k, v in pairs(entity.animation.layers) do 
+  for k, v in pairs(entity.animation.north.layers) do 
+    v.tint = entityTint
+  end
+  for k, v in pairs(entity.animation.south.layers) do 
+    v.tint = entityTint
+  end
+  for k, v in pairs(entity.animation.east.layers) do 
+    v.tint = entityTint
+  end
+  for k, v in pairs(entity.animation.west.layers) do 
     v.tint = entityTint
   end
   
@@ -60,6 +61,7 @@ function makeEntity(args)
       {"iron-plate",1},
     }
   end
+
 
   recipe.result = name
   recipe.icons = icon
@@ -92,7 +94,7 @@ function makeEntity(args)
         {"space-science-pack", 1}
       },
     },
-    order = "x-f"
+    order = "x-c"
   }
 
   data:extend({entity, recipe, item, tech})
@@ -100,7 +102,7 @@ function makeEntity(args)
 end
 
 local mk1 = {
-  name = "nuclear-furnace-mk1",
+  name = "nuclear-chemicals-mk1",
   speed = 5, 
   energy = "900kW", 
   modSlots = 3, 
@@ -118,7 +120,7 @@ local mk1 = {
 }
 
 local mk2 = {
-  name = "nuclear-furnace-mk2",
+  name = "nuclear-chemicals-mk2",
   speed = 18, 
   energy = "1800kW", 
   modSlots = 4, 
@@ -137,7 +139,7 @@ local mk2 = {
 }
 
 local mk3 = {
-  name = "nuclear-furnace-mk3",
+  name = "nuclear-chemical-mk3",
   speed = 50, 
   energy = "3600kW", 
   modSlots = 6, 

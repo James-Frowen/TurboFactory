@@ -31,13 +31,10 @@ function miningDrill(args)
   entity.name = name
   entity.minable = {mining_time = 2, result = name}
   entity.mining_speed = speed
-  -- entity.energy_source =
-  -- {
-  --   type = "electric",
-  --   -- will produce this much * energy pollution units per tick
-  --   emissions = 0,
-  --   usage_priority = "secondary-input"
-  -- }
+  entity.resource_categories = {
+    "basic-solid",
+    "t-nuclear-solid"
+  }
   entity.energy_source = energy_source.nuclear()
   entity.energy_usage = energy
   entity.max_health = health
@@ -62,11 +59,12 @@ function miningDrill(args)
   recipe.icons = icon
   recipe.icon_size = 32
 
-  -- -- TESTING
-  -- recipe.enabled = true
-  -- recipe.ingredients = {
-  --   {"steel-plate",1},
-  -- }
+  if (TurboFactory.Debug) then
+    recipe.enabled = true
+    recipe.ingredients = {
+      {"iron-plate",1},
+    }
+  end
 
   local tech = {
     type = "technology",
@@ -99,7 +97,7 @@ function miningDrill(args)
         {"space-science-pack", 1}
       },
     },
-    order = "x"
+    order = "x-m"
   }
 
   data:extend({entity, recipe, item, tech})
@@ -108,7 +106,7 @@ end
 
 local mk1 = {
   name = "nuclear-mining-drill-mk1",
-  prerequisites = {"nuclear-power"},
+  prerequisites = {"turbo-nuclear-power"},
   speed = 4, 
   energy = "900kW", 
   area = 2.49, 

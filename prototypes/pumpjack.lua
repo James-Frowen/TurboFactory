@@ -12,9 +12,9 @@ function makeEntity(args)
   local prerequisites = args.prerequisites
   local science_count = args.science_count
 
-  local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-  local item = table.deepcopy(data.raw.item["electric-furnace"])
-  local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
+  local entity = table.deepcopy(data.raw["mining-drill"]["pumpjack"])
+  local item = table.deepcopy(data.raw.item["pumpjack"])
+  local recipe = table.deepcopy(data.raw.recipe["pumpjack"])
 
   local icon = {{
     icon=item.icon,
@@ -27,8 +27,7 @@ function makeEntity(args)
   item.icons = icon
   
   entity.name = name
-  entity.crafting_speed = speed
-  entity.crafting_categories = { "smelting", "t-nuclear-smelting"}
+  entity.mining_speed = speed
   entity.minable = {mining_time = 2, result = name}
   -- entity.energy_source =
   -- {
@@ -44,9 +43,12 @@ function makeEntity(args)
   {
     module_slots = modSlots
   }
-  for k, v in pairs(entity.animation.layers) do 
-    v.tint = entityTint
-  end
+  log(name .. " START")
+  log(serpent.block(entity.animation))
+  log(name .. " END")
+  -- for k, v in pairs(entity.animation.layers) do 
+  --   v.tint = entityTint
+  -- end
   
   recipe.enabled = false
   recipe.name = name
@@ -92,7 +94,7 @@ function makeEntity(args)
         {"space-science-pack", 1}
       },
     },
-    order = "x-f"
+    order = "x-p"
   }
 
   data:extend({entity, recipe, item, tech})
@@ -100,62 +102,42 @@ function makeEntity(args)
 end
 
 local mk1 = {
-  name = "nuclear-furnace-mk1",
-  speed = 5, 
-  energy = "900kW", 
-  modSlots = 3, 
+  name = "nuclear-pumpjack-mk1",
+  speed = 4, 
+  energy = "1400kW", 
+  modSlots = 2, 
   ingredients =  {
     {"advanced-circuit",50},
-    {"steel-plate",20},
-    {"concrete",200},
-    {"nuclear-reactor",1}
+    {"steel-plate",120},
+    {"concrete",150},
+    {"nuclear-reactor",1},
+    {"processing-unit", 10}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
   health = 3000,
   prerequisites = {"turbo-nuclear-power"},
-  science_count = 2000
+  science_count = 2500
 }
 
 local mk2 = {
-  name = "nuclear-furnace-mk2",
-  speed = 18, 
-  energy = "1800kW", 
+  name = "nuclear-pumpjack-mk2",
+  speed = 20, 
+  energy = "15400kW", 
   modSlots = 4, 
   ingredients =  {
-    {"advanced-circuit",150},
-    {"steel-plate",80},
-    {"concrete",350},
+    {"advanced-circuit",200},
+    {"steel-plate",600},
+    {"concrete",400},
     {"nuclear-reactor",1},
-    {"processing-unit", 200}
+    {"processing-unit", 400}
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},
   health = 9000,
   prerequisites = {mk1.name},
-  science_count = 8000
+  science_count = 9000
 }
-
-local mk3 = {
-  name = "nuclear-furnace-mk3",
-  speed = 50, 
-  energy = "3600kW", 
-  modSlots = 6, 
-  ingredients =  {
-    {"advanced-circuit",250},
-    {"steel-plate",260},
-    {"concrete",1200},
-    {"nuclear-reactor",3},
-    {"processing-unit", 700}
-  },  
-  iconTint = {r=0.4,g=1,b=0.4,a=0.8},
-  entityTint = {r=0.4,g=1,b=0.4,a=1},
-  health = 30000,
-  prerequisites = {mk2.name},
-  science_count = 30000
-}
-
 
 makeEntity(mk1)
 makeEntity(mk2)
-makeEntity(mk3)
