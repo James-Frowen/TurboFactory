@@ -32,3 +32,5 @@ require("prototypes.inserter")
 require("prototypes.mining")
 require("prototypes.pumpjack")
 require("prototypes.refinery")
+
+require("prototypes.space-station.space-flight")
