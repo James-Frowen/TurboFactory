@@ -55,6 +55,9 @@ function miningDrill(args)
   recipe.normal = nil
   recipe.expensive = nil
   recipe.ingredients = ingredients
+  recipe.energy_required = 60
+  recipe.requester_paste_multiplier = 2
+
   recipe.result = name
   recipe.icons = icon
   recipe.icon_size = 32

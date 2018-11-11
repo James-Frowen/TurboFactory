@@ -12,11 +12,10 @@ TurboFactory.Debug = false;
 --   data.raw["inserter"]["burner-inserter"],
 --   data.raw["inserter"]["long-handed-inserter"],
 -- }
--- local dump = data.raw["mining-drill"]["pumpjack"]
--- local dump = data.raw["assembling-machine"]["oil-refinery"]
--- log("***Before Mass log***")
--- log(serpent.block(dump))
--- log("***After Mass log***")
+local dump = data.raw["recipe"]["steel-plate"]
+log("***Before Mass log***")
+log(serpent.block(dump))
+log("***After Mass log***")
 
 require("prototypes.technology")
 require("prototypes.ore")
@@ -32,5 +31,6 @@ require("prototypes.inserter")
 require("prototypes.mining")
 require("prototypes.pumpjack")
 require("prototypes.refinery")
+require("prototypes.nuclear-steel")
 
 require("prototypes.space-station.space-flight")

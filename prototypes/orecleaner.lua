@@ -59,6 +59,8 @@ function oreCleaner(args)
   recipe.normal = nil
   recipe.expensive = nil
   recipe.ingredients = ingredients
+  recipe.energy_required = 60
+  recipe.requester_paste_multiplier = 2
 
   if (TurboFactory.Debug) then
     recipe.enabled = true

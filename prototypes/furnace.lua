@@ -28,7 +28,7 @@ function makeEntity(args)
   
   entity.name = name
   entity.crafting_speed = speed
-  entity.crafting_categories = { "smelting", "t-nuclear-smelting"}
+  entity.crafting_categories = { "t-nuclear-smelting"}
   entity.minable = {mining_time = 2, result = name}
   -- entity.energy_source =
   -- {
@@ -53,6 +53,8 @@ function makeEntity(args)
   recipe.normal = nil
   recipe.expensive = nil
   recipe.ingredients = ingredients
+  recipe.energy_required = 60
+  recipe.requester_paste_multiplier = 2
 
   if (TurboFactory.Debug) then
     recipe.enabled = true

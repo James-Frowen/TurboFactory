@@ -99,9 +99,9 @@ local function createRadioactive(oreName, plateName)
       name = "smelt-" .. plate.name,
       icons = plate.icons,
 		  icon_size = 32,
-      category = "smelting",
+      category = nuclearSmelting.name,
       subgroup = "intermediate-product",
-      energy_required = 3.5 * 3,
+      energy_required = 3.5 * 2,
       ingredients = {{item.name, 1}},
       result = plate.name
     }
@@ -113,7 +113,7 @@ local function createRadioactive(oreName, plateName)
 		  icon_size = 32,
       category = nuclearSmelting.name,
       subgroup = "intermediate-product",
-      energy_required = 3.5 * 1.5,
+      energy_required = 3.5,
       ingredients = {{rawItem.name, 1}},
       result = plate.name
     }
@@ -131,12 +131,12 @@ local function createRadioactive(oreName, plateName)
       category = nuclearCleaning.name,
       ingredients =
       {
-        {plate.name, 5},
-        {type="fluid", name = "water", amount = 5},
+        {plate.name, nuclearIn},
+        {type="fluid", name = "water", amount = WaterIn},
       },
       results = {
-        {name = plate.name, amount=4},
-        {name = rawPlate.name, amount=1},
+        {name = plate.name, amount=nuclearOut},
+        {name = rawPlate.name, amount=cleanOut},
         {name = "uranium-238", amount=1, probability = uraniumOut / 2 },
         {type="fluid", name = radioactiveWater.name, amount = WaterOut},
       },
@@ -304,8 +304,10 @@ createRadioactive("coal", nil)
 local burnWater = {
   type = "recipe",
   name = "burn-".. radioactiveWater.name,
-  enabled = true,
+  enabled = false,
+  show_amount_in_title = false,
   energy_required = 1,
+  emissions_multiplier = 100,
   icons = {
     {icon=water.icon},
     cleaningIcon
@@ -325,8 +327,9 @@ local burnWater = {
 local cleanWater = {
   type = "recipe",
   name = "clean-".. radioactiveWater.name,
-  enabled = true,
+  enabled = false,
   energy_required = 2,
+  show_amount_in_title = false,
   icons = {
     {icon=water.icon},
     cleaningIcon
