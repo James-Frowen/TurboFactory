@@ -20,6 +20,8 @@ local rawName = "steel-plate"
 local name = "radioactive-plate-" .. rawName
 
 local rawPlate = data.raw.item[rawName]
+
+
 local plate = table.deepcopy(rawPlate)
 
 plate.name = name

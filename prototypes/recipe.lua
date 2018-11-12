@@ -107,7 +107,31 @@ circuit.results = {
 }
 circuit.allow_decomposition = false
 
-data:extend({circuit})
+local wireClean = {
+  enabled = false,
+  type = "recipe",
+  name = "clean-".. plate.name,
+  energy_required = 2,
+  icons = {
+    {icon=rawPlate.icon},
+    cleaningIcon
+  },
+  icon_size = 32,
+  subgroup = "raw-material",
+  category = nuclearCleaning.name,
+  ingredients =
+  {
+    {cableItem.name, 10},
+    {type="fluid", name = "water", amount = waterRequired * 4},
+  },
+  results = {
+    {name = rawCableItem.name, amount=10},
+    {type="fluid", name = radioactiveWater.name, amount = waterRequired * 4},
+  },
+  allow_decomposition = false,
+}
+
+data:extend({circuit, wireClean})
 
 
 
@@ -135,7 +159,11 @@ nuclearCraftingTech = {
     {
       type = "unlock-recipe", 
       recipe = circuit.name
-    }
+    },
+    {
+      type = "unlock-recipe", 
+      recipe = wireClean.name
+    },
   },
   prerequisites = {"turbo-nuclear-power", "nuclear-furnace-mk1"},
   unit =
