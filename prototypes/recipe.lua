@@ -110,10 +110,10 @@ circuit.allow_decomposition = false
 local wireClean = {
   enabled = false,
   type = "recipe",
-  name = "clean-".. plate.name,
+  name = "clean-".. rawCableItem.name,
   energy_required = 2,
   icons = {
-    {icon=rawPlate.icon},
+    {icon=rawCableItem.icon},
     cleaningIcon
   },
   icon_size = 32,
