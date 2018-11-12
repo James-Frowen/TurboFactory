@@ -31,7 +31,6 @@ gear.icons = {
 }
 gear.icon_size = 32
 gear.category = nuclearCrafting.name
-gear.subgroup = "raw-resource"
 gear.ingredients =
 {
   {"radioactive-plate-iron-plate", 4},
@@ -40,8 +39,9 @@ gear.ingredients =
 gear.results = {
   {name = rawGear.name, amount=2},
   {type="fluid", name = radioactiveWater.name, amount = waterRequired},
-}
-gear.allow_decomposition = false
+},
+main_product = rawGear.name,
+gear.allow_decomposition = false,
 
 data:extend({gear})
 
@@ -107,31 +107,8 @@ circuit.results = {
 }
 circuit.allow_decomposition = false
 
-local wireClean = {
-  enabled = false,
-  type = "recipe",
-  name = "clean-".. rawCableItem.name,
-  energy_required = 2,
-  icons = {
-    {icon=rawCableItem.icon},
-    cleaningIcon
-  },
-  icon_size = 32,
-  subgroup = "raw-material",
-  category = nuclearCleaning.name,
-  ingredients =
-  {
-    {cableItem.name, 10},
-    {type="fluid", name = "water", amount = waterRequired * 4},
-  },
-  results = {
-    {name = rawCableItem.name, amount=10},
-    {type="fluid", name = radioactiveWater.name, amount = waterRequired * 4},
-  },
-  allow_decomposition = false,
-}
 
-data:extend({circuit, wireClean})
+data:extend({circuit})
 
 
 
@@ -183,4 +160,66 @@ nuclearCraftingTech = {
   order = "x-o"
 }
 
+
+
+local wireClean = {
+  enabled = false,
+  type = "recipe",
+  name = "clean-".. rawCableItem.name,
+  energy_required = 1.5,
+  icons = {
+    {icon=data.raw.item[rawCableItem.name].icon},
+    cleaningIcon
+  },
+  icon_size = 32,
+  category = nuclearCleaning.name,
+  ingredients =
+  {
+    {"radioactive-plate-copper-plate", 4},
+    {type="fluid", name = "water", amount = waterRequired * 4},
+  },
+  results = {
+    {name = rawCableItem.name, amount=8},
+    {type="fluid", name = radioactiveWater.name, amount = waterRequired * 4},
+  },
+  main_product = rawCableItem.name,
+  allow_decomposition = false,
+}
+local nuclearCraftingTech2 = {
+  type = "technology",
+  name = "nuclear-crafting-2",
+  icon_size = 128,
+  icons = 
+  {{
+    icon = "__base__/graphics/technology/automation.png",
+  },{
+    icon="__TurboFactory__/graphics/radioactive-ore-large.png",
+    tint={r=.2, g=.2, b=.2, a=0.2},
+  }},
+  effects =
+  {
+    {
+      type = "unlock-recipe", 
+      recipe = wireClean.name
+    },
+  },
+  prerequisites = {"turbo-nuclear-power", "nuclear-furnace-mk1"},
+  unit =
+  {
+    count_formula = 800,
+    time = 120,
+    ingredients =
+    {
+      {"science-pack-1", 1},
+      {"science-pack-2", 1},
+      {"science-pack-3", 1},
+      {"production-science-pack", 1},
+      {"high-tech-science-pack", 1},
+      {"space-science-pack", 1}
+    },
+  },
+  order = "x-o"
+}
+
 data:extend({nuclearCraftingTech})
+data:extend({wireClean, nuclearCraftingTech2})
