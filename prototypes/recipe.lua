@@ -39,9 +39,9 @@ gear.ingredients =
 gear.results = {
   {name = rawGear.name, amount=2},
   {type="fluid", name = radioactiveWater.name, amount = waterRequired},
-},
-main_product = rawGear.name,
-gear.allow_decomposition = false,
+}
+gear.main_product = rawGear.name
+gear.allow_decomposition = false
 
 data:extend({gear})
 
@@ -136,11 +136,7 @@ nuclearCraftingTech = {
     {
       type = "unlock-recipe", 
       recipe = circuit.name
-    },
-    {
-      type = "unlock-recipe", 
-      recipe = wireClean.name
-    },
+    }
   },
   prerequisites = {"turbo-nuclear-power", "nuclear-furnace-mk1"},
   unit =
@@ -172,7 +168,7 @@ local wireClean = {
     cleaningIcon
   },
   icon_size = 32,
-  category = nuclearCleaning.name,
+  category = nuclearCrafting.name,
   ingredients =
   {
     {"radioactive-plate-copper-plate", 4},
