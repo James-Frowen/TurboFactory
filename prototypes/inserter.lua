@@ -28,7 +28,7 @@ function makeEntity(args)
   item.icons = icon
   
   entity.name = name
-  entity.minable = {mining_time = 2, result = name}
+  entity.minable.result = name
   entity.extension_speed = ext_speed
   entity.rotation_speed = rot_speed
   entity.energy_per_movement = energy
@@ -57,9 +57,6 @@ function makeEntity(args)
   recipe.expensive = nil
   recipe.category = "crafting-with-fluid"
   recipe.ingredients = ingredients
-  if (cat == "underground-belt") then
-    recipe.result_count = 2
-  end
 
   if (TurboFactory.Debug) then
     recipe.enabled = true
