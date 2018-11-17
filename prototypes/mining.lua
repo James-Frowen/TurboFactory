@@ -118,7 +118,8 @@ local mk1 = {
     {"advanced-circuit",40},
     {"steel-plate",40},
     {"concrete",100},
-    {"nuclear-reactor",1}
+    {"nuclear-reactor",1},
+    {"electric-mining-drill",2}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
@@ -135,10 +136,10 @@ local mk2 = {
   modSlots = 2, 
   ingredients =  {
     {"advanced-circuit",100},
-    {"steel-plate",250},
-    {"concrete",150},
-    {"nuclear-reactor",1},
-    {"processing-unit", 50}
+    {"steel-plate",170},
+    {"concrete",100},
+    {"processing-unit", 50},
+    {mk1.name, 2},
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},
@@ -154,11 +155,10 @@ local mk3 = {
   area = 4.49, 
   modSlots = 8, 
   ingredients =  {
-    {"advanced-circuit",200},
-    {"steel-plate",1000},
-    {"concrete",500},
-    {"nuclear-reactor",2},
-    {"processing-unit", 500}
+    {"steel-plate",500},
+    {"concrete",200},
+    {"processing-unit", 400}
+    {mk2.name, 2},
   },  
   iconTint = {r=0.4,g=1,b=0.4,a=0.8},
   entityTint = {r=0.4,g=1,b=0.4,a=1},

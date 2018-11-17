@@ -120,6 +120,7 @@ local mk1 = {
     {"concrete",300},
     {"nuclear-reactor",1},
     {"processing-unit", 20}
+    {"oil-refinery", 1}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
   entityTint = {r=0.9,g=1,b=0.9,a=1},
@@ -134,11 +135,11 @@ local mk2 = {
   energy = "1800kW", 
   modSlots = 4, 
   ingredients =  {
-    {"advanced-circuit",400},
-    {"steel-plate",600},
-    {"concrete",1500},
-    {"nuclear-reactor",1},
-    {"processing-unit", 450}
+    {"advanced-circuit",300},
+    {"steel-plate",440},
+    {"concrete",1200},
+    {"processing-unit", 430},
+    {mk1.name, 1}
   },  
   iconTint = {r=0.7,g=0.9,b=0.7,a=0.8},
   entityTint = {r=0.7,g=0.9,b=0.7,a=1},
