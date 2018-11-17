@@ -119,7 +119,7 @@ local mk1 = {
     {"steel-plate",160},
     {"concrete",300},
     {"nuclear-reactor",1},
-    {"processing-unit", 20}
+    {"processing-unit", 20},
     {"oil-refinery", 1}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},

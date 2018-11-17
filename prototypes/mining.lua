@@ -157,7 +157,7 @@ local mk3 = {
   ingredients =  {
     {"steel-plate",500},
     {"concrete",200},
-    {"processing-unit", 400}
+    {"processing-unit", 400},
     {mk2.name, 2},
   },  
   iconTint = {r=0.4,g=1,b=0.4,a=0.8},

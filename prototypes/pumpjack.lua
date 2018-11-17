@@ -114,7 +114,7 @@ local mk1 = {
     {"steel-plate",120},
     {"concrete",150},
     {"nuclear-reactor",1},
-    {"processing-unit", 10}
+    {"processing-unit", 10},
     {"pumpjack",1}
   },  
   iconTint = {r=0.9,g=1,b=0.9,a=0.8},
