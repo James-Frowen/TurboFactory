@@ -34,11 +34,11 @@ gear.category = nuclearCrafting.name
 gear.ingredients =
 {
   {"radioactive-plate-iron-plate", 4},
-  {type="fluid", name = "water", amount = waterRequired},
+  {type="fluid", name = "water", amount = waterRequired*1.25},
 }
 gear.results = {
   {name = rawGear.name, amount=2},
-  {type="fluid", name = radioactiveWater.name, amount = waterRequired},
+  {type="fluid", name = radioactiveWater.name, amount = waterRequired/0.75},
 }
 gear.main_product = rawGear.name
 gear.allow_decomposition = false
@@ -99,13 +99,14 @@ circuit.ingredients =
 {
   {"radioactive-plate-iron-plate", 2},
   {cableItem.name, 6},
-  {type="fluid", name = "water", amount = waterRequired*2},
+  {type="fluid", name = "water", amount = waterRequired*2.5},
 }
 circuit.results = {
   {name = rawCircuit.name, amount=2},
-  {type="fluid", name = radioactiveWater.name, amount = waterRequired*2},
+  {type="fluid", name = radioactiveWater.name, amount = waterRequired*1.5},
 }
 circuit.allow_decomposition = false
+circuit.subgroup = "intermediate-product"
 
 
 data:extend({circuit})
@@ -172,11 +173,11 @@ local wireClean = {
   ingredients =
   {
     {"radioactive-plate-copper-plate", 4},
-    {type="fluid", name = "water", amount = waterRequired * 4},
+    {type="fluid", name = "water", amount = waterRequired * 5},
   },
   results = {
     {name = rawCableItem.name, amount=8},
-    {type="fluid", name = radioactiveWater.name, amount = waterRequired * 4},
+    {type="fluid", name = radioactiveWater.name, amount = waterRequired * 3},
   },
   main_product = rawCableItem.name,
   allow_decomposition = false,
@@ -219,3 +220,15 @@ local nuclearCraftingTech2 = {
 
 data:extend({nuclearCraftingTech})
 data:extend({wireClean, nuclearCraftingTech2})
+
+
+for k, v in pairs(data.raw.module) do
+  if v.name:find("productivity%-module") then
+    -- v.limitation = {} -- empty limitation table
+    log(serpent.block(v.limitation))
+    table.insert(v.limitation, gear.name)
+    table.insert(v.limitation, cable.name)
+    table.insert(v.limitation, circuit.name)
+    table.insert(v.limitation, wireClean.name)
+  end
+end

@@ -44,7 +44,8 @@ local function createRadioactive(oreName, plateName)
   local nuclearOut = 40
   local WaterOut = 10
   local cleanOut = 10
-  local uraniumOut = 1 / 8
+  local uraniumOut = 1 / 60
+  local uraniumBurnOut = 1 / 40
 
   local cleanRecipe = {
     type = "recipe",
@@ -320,7 +321,7 @@ local burnWater = {
     {type="fluid", name = radioactiveWater.name, amount = 10},
   },
   results = {
-    {name = "uranium-238", amount=1, probability = 0.2 },
+    {name = "uranium-238", amount=1, probability = uraniumBurnOut },
   },
   allow_decomposition = false,
 }

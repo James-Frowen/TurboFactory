@@ -14,13 +14,11 @@ TurboFactory.Debug = false;
 -- }
 
 
-local dump = data.raw["item"]["uranium-fuel-cell"]
-local dump2 = data.raw["item"]["used-up-uranium-fuel-cell"]
-log("***Before Mass log***")
-log(serpent.block(dump))
-log("***Before Mass log***")
-log(serpent.block(dump2))
-log("***After Mass log***")
+-- local dump = data.raw["item"]["uranium-fuel-cell"]
+-- local dump2 = data.raw["item"]["used-up-uranium-fuel-cell"]
+-- log("***Before Mass log***")
+
+-- log("***After Mass log***")
 
 require("prototypes.technology")
 require("prototypes.ore")

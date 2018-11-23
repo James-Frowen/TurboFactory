@@ -28,7 +28,8 @@ local recipe = {
   category = "crafting",
   ingredients =
   {
-    {"uranium-fuel-cell",2}
+    {"uranium-fuel-cell",2},
+    {"uranium-238",10},
   },
   results = {
     {item.name, 1}

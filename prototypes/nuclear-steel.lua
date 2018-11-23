@@ -83,7 +83,7 @@ local steelClean = {
   results = {
     {name = plate.name, amount=nuclearOut},
     {name = rawPlate.name, amount=cleanOut},
-    {name = "uranium-238", amount=1, probability =  1 / 16 },
+    {name = "uranium-238", amount=1, probability =  1 / 80 },
     {type="fluid", name = radioactiveWater.name, amount = WaterOut},
   },
   allow_decomposition = false,
