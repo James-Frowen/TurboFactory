@@ -225,7 +225,7 @@ data:extend({wireClean, nuclearCraftingTech2})
 for k, v in pairs(data.raw.module) do
   if v.name:find("productivity%-module") then
     -- v.limitation = {} -- empty limitation table
-    log(serpent.block(v.limitation))
+    -- log(serpent.block(v.limitation))
     table.insert(v.limitation, gear.name)
     table.insert(v.limitation, cable.name)
     table.insert(v.limitation, circuit.name)

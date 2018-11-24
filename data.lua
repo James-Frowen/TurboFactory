@@ -17,7 +17,7 @@ TurboFactory.Debug = false;
 -- local dump = data.raw["item"]["uranium-fuel-cell"]
 -- local dump2 = data.raw["item"]["used-up-uranium-fuel-cell"]
 -- log("***Before Mass log***")
-
+-- log(serpent.block(v.limitation))
 -- log("***After Mass log***")
 
 require("prototypes.technology")
@@ -36,5 +36,7 @@ require("prototypes.pumpjack")
 require("prototypes.refinery")
 require("prototypes.nuclear-steel")
 require("prototypes.fuel-cell")
+
+require("prototypes.robot-capacity")
 
 require("prototypes.space-station.space-flight")
